@@ -144,7 +144,7 @@ general_stats['DateStarted'] = pd.to_datetime(general_stats['DateStarted']).dt.d
 
 general_stats.dtypes
 
- There is no need to check the video_id list since its just strings
+# There is no need to check the video_id list since its just strings
 
 video_df.head()
 
@@ -164,13 +164,13 @@ video_df.head(10)
 
 ### Exploratory Data Analysis
 
-Starting with general_stats
+# Starting with general_stats
 
 general_stats.describe()
 
 general_stats.shape
 
-We have 10 data science channels to analyse with 6 different attributes
+# We have 10 data science channels to analyse with 6 different attributes
 
 # how many videos we have in total?
 
@@ -181,7 +181,7 @@ general_stats['Total_Videos'].sum()
 sns.displot(general_stats, x='Subscribers_Count')
 plt.title('Subscribers distribution')
 
-Most of the channels have 0-1 million subscribers
+# Most of the channels have 0-1 million subscribers
 
 # let's see how many subscribers each channel have.
 
@@ -213,7 +213,7 @@ names_ordered = general_stats.sort_values('Total_Videos', ascending=False).Chann
 fig = sns.barplot(y=vids, x=names, palette ='Blues_r', order=names_ordered).set_xticklabels(labels = names_ordered, fontsize=12)
 fig ;
 
-Exploratory Data Analysis on Video_df
+# Exploratory Data Analysis on Video_df
 
 video_df.head()
 
