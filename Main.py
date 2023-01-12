@@ -1,3 +1,5 @@
+# Importing the libraries we will need throughout the project.
+
 from googleapiclient.discovery import build
 import pandas as pd
 import seaborn as sns
