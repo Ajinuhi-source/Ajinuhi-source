@@ -153,7 +153,7 @@ def top_10_viewed(df):
         x = bar.get_x()
         width = bar.get_width()
         height = bar.get_height()
-        ax.text(x+width/2., height + 0.2, label, ha="center", fontproperties=fprop, fontsize=3.5) 
+        ax.text(x+width/2., height + 0.2, label, ha="center", fontsize=3.5) 
 
 
 
@@ -168,7 +168,7 @@ def top_10_viewed_by_name(df, name):
     ordered = name_df.sort_values('Views', ascending=False)
     top_10 = ordered.head(10)
     plt.xticks(rotation=90)
-    sns.barplot(y=top_10['Views'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'],fontproperties=fprop, fontsize=12);
+    sns.barplot(y=top_10['Views'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'], fontsize=12);
 
 
 # TOP 10 Liked videos ever.
@@ -186,7 +186,7 @@ def top_10_Liked(df):
         x = bar.get_x()
         width = bar.get_width()
         height = bar.get_height()
-        ax.text(x+width/2., height + 0.2, label, ha="center", fontproperties=fprop, fontsize=3.5) 
+        ax.text(x+width/2., height + 0.2, label, ha="center", fontsize=3.5) 
 
 
 
@@ -200,7 +200,7 @@ def top_10_Liked_by_name(df, name):
     ordered = name_df.sort_values('Likes', ascending=False)
     top_10 = ordered.head(10)
     plt.xticks(rotation=90)
-    sns.barplot(y=top_10['Likes'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'],fontproperties=fprop, fontsize=12);
+    sns.barplot(y=top_10['Likes'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'], fontsize=12);
 
 
 # Count of subscribers for each channel.
@@ -215,7 +215,7 @@ def sub_count(df):
     names = general_stats['Channel_name']
     subs = general_stats['Subscribers_Count']
     names_ordered = general_stats.sort_values('Subscribers_Count', ascending=False).Channel_name
-    sns.barplot(x=subs, y=names, palette='Blues_r', order=names_ordered).set_yticklabels(labels=names_ordered,fontproperties=fprop,fontsize=12);
+    sns.barplot(x=subs, y=names, palette='Blues_r', order=names_ordered).set_yticklabels(labels=names_ordered, fontsize=12);
     ax.bar_label(ax.containers[0], fmt = '%d');
 
 
@@ -230,7 +230,7 @@ def timeline(df):
     names = general_stats['Channel_name']
     ordered = general_stats.sort_values('DateStarted', ascending=True)
 
-    sns.lineplot(x=ordered['Channel_name'], y=ordered['DateStarted'], palette='Blues', marker="o").set_xticklabels(labels = ordered['Channel_name'],fontproperties=fprop, fontsize=12);
+    sns.lineplot(x=ordered['Channel_name'], y=ordered['DateStarted'], palette='Blues', marker="o").set_xticklabels(labels = ordered['Channel_name'], fontsize=12);
 
     
     
@@ -324,6 +324,8 @@ def st_page(name):
         col4.write(str(general_stats[general_stats.Channel_name == name]['DateStarted'].astype('datetime64[s]').item().strftime('%Y.%m.%d')))
     
 
+   
+   
     st.write("")
     st.write("")
 
