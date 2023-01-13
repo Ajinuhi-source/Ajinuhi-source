@@ -181,7 +181,7 @@ def top_10_Liked(df):
     ordered = df.sort_values('Likes', ascending=False)
     top_10 = ordered.head(10)
     plt.xticks(rotation=90)
-    sns.barplot(y=top_10['Likes'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'],fontproperties=fprop, fontsize=12);
+    sns.barplot(y=top_10['Likes'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'], fontsize=12);
     for bar, label in zip(ax.patches, top_10['Identity']):
         x = bar.get_x()
         width = bar.get_width()
