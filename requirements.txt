@@ -1,19 +1,19 @@
-google-api-core==2.10.1
+google-api-core
 
-google-api-python-client==2.71.0
+google-api-python-client
 
-google-auth==2.6.0
+google-auth
 
-google-auth-httplib2==0.1.0
+google-auth-httplib2
 
-googleapis-common-protos==1.56.4
+googleapis-common-protos
 
-matplotlib==3.6.2
+matplotlib
 
-seaborn==0.12.1
+seaborn
 
-pandas==1.4.4
+pandas
 
-streamlit==1.16.0
+streamlit
 
-protobuf~=3.9.2
+protobuf
