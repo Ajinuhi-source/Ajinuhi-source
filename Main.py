@@ -139,30 +139,23 @@ video_df['Publish_Date'] = pd.to_datetime(video_df['Publish_Date']).dt.date.asty
 
 # Function to return top 10 viewed videos ever.
 
-def top_10_viewed(df):
-    fig, ax = plt.subplots()
-    plt.ticklabel_format(style='plain', axis='y')
-    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: '{:,.0f}'.format(x/1000000) + 'M'))
-    ax.spines["right"].set_visible(False)
-    ax.spines["top"].set_visible(False)
-    ordered = df.sort_values('Views', ascending=False)
-    top_10 = ordered.head(10)
-    plt.xticks(rotation=90)
-    sns.barplot(y=top_10['Views'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'], fontsize=12);
-    for bar, label in zip(ax.patches, top_10['Identity']):
-        x = bar.get_x()
-        width = bar.get_width()
-        height = bar.get_height()
-        ax.text(x+width/2., height + 0.2, label, ha="center", fontsize=3.5) 
+top_10_viewed = video_df.sort_values(by="Views",ascending=False).head(10)
+top_10_viewed
 
-
+Title = top_10_viewed["Title"]
+Views = top_10_viewed["Views"]
+plt.bar(Title, Views)
+plt.title("Top viewed videos")
+plt.xlabel("Views")
+plt.ylabel("Title")
+plt.xticks(rotation=90)
+plt.show()
 
 # Function to return top 10 viewed videos for a specific channel.
 
 def top_10_viewed_by_name(df, name):
     fig, ax = plt.subplots()
     ax.ticklabel_format(useOffset=False, style='plain')
-    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: '{:,.0f}'.format(x/1000000) + 'M'))
 
     name_df = df[df.Identity == name]
     ordered = name_df.sort_values('Views', ascending=False)
@@ -175,9 +168,6 @@ def top_10_viewed_by_name(df, name):
 
 def top_10_Liked(df):
     fig, ax = plt.subplots()
-    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: '{:,.0f}'.format(x/1000) + 'K'))
-    ax.spines["right"].set_visible(False)
-    ax.spines["top"].set_visible(False)
     ordered = df.sort_values('Likes', ascending=False)
     top_10 = ordered.head(10)
     plt.xticks(rotation=90)
@@ -194,8 +184,6 @@ def top_10_Liked(df):
 
 def top_10_Liked_by_name(df, name):
     fig, ax = plt.subplots()
-    ax.ticklabel_format(useOffset=False, style='plain')
-    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, pos: '{:,.0f}'.format(x/1000) + 'K'))
     name_df = df[df.Identity == name]
     ordered = name_df.sort_values('Likes', ascending=False)
     top_10 = ordered.head(10)
@@ -207,24 +195,17 @@ def top_10_Liked_by_name(df, name):
 
 def sub_count(df):
     fig, ax = plt.subplots()
-    ax.ticklabel_format(useOffset=False, style='plain')
-    ax.spines["right"].set_visible(False)
-    ax.spines["top"].set_visible(False)
-    ax.spines["bottom"].set_visible(False)
-    ax.get_xaxis().set_visible(False)
     names = general_stats['Channel_name']
     subs = general_stats['Subscribers_Count']
     names_ordered = general_stats.sort_values('Subscribers_Count', ascending=False).Channel_name
     sns.barplot(x=subs, y=names, palette='Blues_r', order=names_ordered).set_yticklabels(labels=names_ordered, fontsize=12);
-    ax.bar_label(ax.containers[0], fmt = '%d');
+   
 
 
 # Line plot of dates the channels got started.
 
 def timeline(df):
     fig, ax = plt.subplots();
-    ax.spines["right"].set_visible(False)
-    ax.spines["top"].set_visible(False)
     plt.xticks(rotation=90);
 
     names = general_stats['Channel_name']
