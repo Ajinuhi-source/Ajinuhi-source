@@ -3,6 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import streamlit as st
 
 api_key = 'AIzaSyBsLiUpNccdp_Mtaxz4p6p35LOZxe3MoE4'
 channel_ids = ['UCnz-ZXXER4jOvuED5trXfEA', 'UCCezIgC97PvUuR4_gbFUs5g', 'UC7cs8q-gJRlGwj4A8OmCmXg', 'UCsvqVGtbbyHaMoevxPAq9Fg', 'UCOqXBtP8zUeb3jqeJ7gS-EQ', 'UCfzlCWGWYyIQ0aLC5w48gBQ', 
@@ -151,6 +152,8 @@ plt.ylabel("Title")
 plt.xticks(rotation=90)
 plt.show()
 
+
+
 # Function to return top 10 viewed videos for a specific channel.
 
 def top_10_viewed_by_name(df, name):
@@ -220,8 +223,6 @@ def timeline(df):
 ##################################### STREAMLIT PART ##########################################
 ###############################################################################################
 
-
-import streamlit as st
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_page_config(layout="wide")
@@ -305,8 +306,6 @@ def st_page(name):
         col4.write(str(general_stats[general_stats.Channel_name == name]['DateStarted'].astype('datetime64[s]').item().strftime('%Y.%m.%d')))
     
 
-   
-   
     st.write("")
     st.write("")
 
@@ -317,9 +316,9 @@ def st_page(name):
 
     st.write(' ### Top 10 liked videos for this channel: ')
     st.pyplot(top_10_Liked_by_name(video_df, name))
-
-
-
+    
+    
+    
 if side_bar == 'techTFQ':
     st_page('techTFQ')
 
