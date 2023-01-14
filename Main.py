@@ -91,12 +91,6 @@ def get_video_details(youtube, video_ids):
     return all_video_stats
 
 
-# Let's check how the function works.
-video_stats = get_video_details(youtube, video_ids[8])
-video_stats = pd.DataFrame(video_stats)
-video_stats.head()
-
-
 # Storing all video information dataframes in a list.
 
 video_dfs = []
