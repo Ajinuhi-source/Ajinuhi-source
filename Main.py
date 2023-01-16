@@ -5,7 +5,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-import streamlit as st
+
 
 
 # Using YouTube Data API we need a personal API key and then a list of channels id that we want to analyze
@@ -222,6 +222,7 @@ def timeline(df):
 ###############################################################################################
 
 
+import streamlit as st
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_page_config(layout="wide")
 
