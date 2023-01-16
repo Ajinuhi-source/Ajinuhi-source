@@ -1,3 +1,135 @@
+###############################################################################################
+##################################### STREAMLIT PART ##########################################
+###############################################################################################
+
+
+import streamlit as st
+st.set_page_config(layout="wide")
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
+
+sidebar_list = general_stats.Channel_name.tolist()
+sidebar_list.insert(0, "General Stats")
+
+side_bar = st.sidebar.selectbox('Which channel would you like to check ?', sidebar_list)
+
+
+if side_bar == "General Stats":
+
+    st.markdown("<h1 style='text-align: center; color: #8CC0DE;'>YouTube Channel Analysis</h1>", unsafe_allow_html=True)
+    st.write("")
+    st.write("")
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        col1.header("Total Channels")
+        col1.write(str(len(general_stats)))
+
+    with col2:
+        col2.header("Total Videos")
+        col2.write(str(general_stats.Total_Videos.sum()))
+
+    with col3:
+        col3.header("Min Number of Subs")
+        col3.write(str(general_stats.Subscribers_Count.min()))
+
+    with col4:
+        col4.header("Max Number of Subs")
+        col4.write(str(general_stats.Subscribers_Count.max()))
+
+
+    st.write("")
+    st.write("")
+
+
+    st.write(' #### Subscribers Count ***By Channel*** : ')
+    st.pyplot(sub_count(video_df))
+
+    st.write("")
+
+    st.write(' #### ***Timeline*** of Channels creation date : ')
+    st.pyplot(timeline(video_df))
+
+    st.write("")
+
+    st.write(' #### Top 10 ***Viewed***  Videos : ')
+    st.pyplot(top_10_viewed(video_df))
+
+    st.write("")
+
+    st.write(' #### Top 10 ***Liked***  Videos : ')
+    st.pyplot(top_10_Liked(video_df))
+
+
+
+def st_page(name):
+
+    st.write(f""" # {name} Channel Analysis """)
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        col1.header("Subs Count")
+        col1.write(str(int(general_stats.Subscribers_Count[general_stats.Channel_name == name])))
+
+    with col2:
+        col2.header("Total Videos")
+        col2.write(str(len(video_df[video_df.Identity == name])))
+
+    with col3:
+        col3.header("Total Views")
+        col3.write(str(int(general_stats.Total_Views_Count[general_stats.Channel_name == name])))
+
+    with col4:
+        col4.header("Date Started")
+        col4.write(str(general_stats[general_stats.Channel_name == name]['DateStarted'].astype('datetime64[s]').item().strftime('%Y.%m.%d')))
+    
+
+    st.write("")
+    st.write("")
+
+    st.write(' ### Top 10 viewed videos for this channel: ')
+    st.pyplot(top_10_viewed_by_name(video_df, name))
+
+    st.write("")
+
+    st.write(' ### Top 10 liked videos for this channel: ')
+    st.pyplot(top_10_Liked_by_name(video_df, name))
+    
+    
+    
+if side_bar == 'techTFQ':
+    st_page('techTFQ')
+
+if side_bar == 'Corey Schafer':
+    st_page('Corey Schafer')
+
+if side_bar == 'Alex The Analyst':
+    st_page('Alex The Analyst')
+
+if side_bar == 'Simplilearn':
+    st_page('Simplilearn')
+
+if side_bar == 'Joey Blue':
+    st_page('Joey Blue')
+
+if side_bar == 'Sentdex':
+    st_page('Sentdex')
+
+if side_bar == 'Chandoo':
+    st_page('Chandoo')
+
+if side_bar == 'StatQuest with Josh Starmer':
+    st_page('StatQuest with Josh Starmer')
+
+if side_bar == 'Tina Huang':
+    st_page('Tina Huang')
+
+if side_bar == 'Leila Gharani':
+    st_page('Leila Gharani')
+
+
 # Importing libraries
 
 from googleapiclient.discovery import build
@@ -217,133 +349,4 @@ def timeline(df):
     
     
 
-###############################################################################################
-##################################### STREAMLIT PART ##########################################
-###############################################################################################
 
-
-import streamlit as st
-st.set_page_config(layout="wide")
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
-
-sidebar_list = general_stats.Channel_name.tolist()
-sidebar_list.insert(0, "General Stats")
-
-side_bar = st.sidebar.selectbox('Which channel would you like to check ?', sidebar_list)
-
-
-if side_bar == "General Stats":
-
-    st.markdown("<h1 style='text-align: center; color: #8CC0DE;'>YouTube Channel Analysis</h1>", unsafe_allow_html=True)
-    st.write("")
-    st.write("")
-
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col1:
-        col1.header("Total Channels")
-        col1.write(str(len(general_stats)))
-
-    with col2:
-        col2.header("Total Videos")
-        col2.write(str(general_stats.Total_Videos.sum()))
-
-    with col3:
-        col3.header("Min Number of Subs")
-        col3.write(str(general_stats.Subscribers_Count.min()))
-
-    with col4:
-        col4.header("Max Number of Subs")
-        col4.write(str(general_stats.Subscribers_Count.max()))
-
-
-    st.write("")
-    st.write("")
-
-
-    st.write(' #### Subscribers Count ***By Channel*** : ')
-    st.pyplot(sub_count(video_df))
-
-    st.write("")
-
-    st.write(' #### ***Timeline*** of Channels creation date : ')
-    st.pyplot(timeline(video_df))
-
-    st.write("")
-
-    st.write(' #### Top 10 ***Viewed***  Videos : ')
-    st.pyplot(top_10_viewed(video_df))
-
-    st.write("")
-
-    st.write(' #### Top 10 ***Liked***  Videos : ')
-    st.pyplot(top_10_Liked(video_df))
-
-
-
-def st_page(name):
-
-    st.write(f""" # {name} Channel Analysis """)
-
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col1:
-        col1.header("Subs Count")
-        col1.write(str(int(general_stats.Subscribers_Count[general_stats.Channel_name == name])))
-
-    with col2:
-        col2.header("Total Videos")
-        col2.write(str(len(video_df[video_df.Identity == name])))
-
-    with col3:
-        col3.header("Total Views")
-        col3.write(str(int(general_stats.Total_Views_Count[general_stats.Channel_name == name])))
-
-    with col4:
-        col4.header("Date Started")
-        col4.write(str(general_stats[general_stats.Channel_name == name]['DateStarted'].astype('datetime64[s]').item().strftime('%Y.%m.%d')))
-    
-
-    st.write("")
-    st.write("")
-
-    st.write(' ### Top 10 viewed videos for this channel: ')
-    st.pyplot(top_10_viewed_by_name(video_df, name))
-
-    st.write("")
-
-    st.write(' ### Top 10 liked videos for this channel: ')
-    st.pyplot(top_10_Liked_by_name(video_df, name))
-    
-    
-    
-if side_bar == 'techTFQ':
-    st_page('techTFQ')
-
-if side_bar == 'Corey Schafer':
-    st_page('Corey Schafer')
-
-if side_bar == 'Alex The Analyst':
-    st_page('Alex The Analyst')
-
-if side_bar == 'Simplilearn':
-    st_page('Simplilearn')
-
-if side_bar == 'Joey Blue':
-    st_page('Joey Blue')
-
-if side_bar == 'Sentdex':
-    st_page('Sentdex')
-
-if side_bar == 'Chandoo':
-    st_page('Chandoo')
-
-if side_bar == 'StatQuest with Josh Starmer':
-    st_page('StatQuest with Josh Starmer')
-
-if side_bar == 'Tina Huang':
-    st_page('Tina Huang')
-
-if side_bar == 'Leila Gharani':
-    st_page('Leila Gharani')
