@@ -212,7 +212,7 @@ def timeline(df):
     names = general_stats['Channel_name']
     ordered = general_stats.sort_values('DateStarted', ascending=True)
 
-    sns.lineplot(x=ordered['Channel_name'], y=ordered['DateStarted'], palette='Blues', marker="o").set_xticklabels(labels = ordered['Channel_name'], fontsize=12);
+    sns.lineplot(x=ordered['Channel_name'], y=ordered['DateStarted'], palette='Blues').set_xticklabels(labels = ordered['Channel_name'], fontsize=12);
 
     
     
@@ -223,8 +223,8 @@ def timeline(df):
 
 
 import streamlit as st
-st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_page_config(layout="wide")
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 sidebar_list = general_stats.Channel_name.tolist()
