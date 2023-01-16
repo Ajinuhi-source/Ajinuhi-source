@@ -1,3 +1,5 @@
+# Importing libraries
+
 from googleapiclient.discovery import build
 import pandas as pd
 import seaborn as sns
@@ -5,6 +7,8 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import streamlit as st
 
+
+# Using YouTube Data API we need a personal API key and then a list of channels id that we want to analyze
 api_key = 'AIzaSyBsLiUpNccdp_Mtaxz4p6p35LOZxe3MoE4'
 channel_ids = ['UCnz-ZXXER4jOvuED5trXfEA', 'UCCezIgC97PvUuR4_gbFUs5g', 'UC7cs8q-gJRlGwj4A8OmCmXg', 'UCsvqVGtbbyHaMoevxPAq9Fg', 'UCOqXBtP8zUeb3jqeJ7gS-EQ', 'UCfzlCWGWYyIQ0aLC5w48gBQ', 
                'UC8uU_wruBMHeeRma49dtZKA', 'UCtYLUTtgS3k1Fg4y5tAhLbw', 'UC2UXDak6o7rBm23k3Vv5dww', 'UCJtUOos_MwJa_Ewii-R3cJA']
@@ -241,15 +245,15 @@ if side_bar == "General Stats":
         col1.write(str(len(general_stats)))
 
     with col2:
-        col2.header("Total Nr. Videos")
+        col2.header("Total Videos")
         col2.write(str(general_stats.Total_Videos.sum()))
 
     with col3:
-        col3.header("Min Nr. Subs")
+        col3.header("Min Number of Subs")
         col3.write(str(general_stats.Subscribers_Count.min()))
 
     with col4:
-        col4.header("Max Nr. Subs")
+        col4.header("Max Number of Subs")
         col4.write(str(general_stats.Subscribers_Count.max()))
 
 
