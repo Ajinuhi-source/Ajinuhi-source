@@ -144,18 +144,13 @@ video_df['Publish_Date'] = pd.to_datetime(video_df['Publish_Date']).dt.date.asty
 
 # Function to return top 10 viewed videos ever.
 
-top_10_viewed = video_df.sort_values(by="Views",ascending=False).head(10)
-top_10_viewed
-
-Title = top_10_viewed["Title"]
-Views = top_10_viewed["Views"]
-plt.bar(Title, Views)
-plt.title("Top viewed videos")
-plt.xlabel("Views")
-plt.ylabel("Title")
-plt.xticks(rotation=90)
-plt.show()
-
+def top_10_viewed(df):
+    fig, ax = plt.subplots()
+    ordered = df.sort_values('Likes', ascending=False)
+    top_10 = ordered.head(10)
+    plt.xticks(rotation=90)
+    sns.barplot(y=top_10['Likes'] , x=top_10['Title'], palette ='Blues_r').set_xticklabels(labels = top_10['Title'], fontsize=12);
+    
 
 
 # Function to return top 10 viewed videos for a specific channel.
