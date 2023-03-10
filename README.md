@@ -5,4 +5,4 @@ To go through every step (aside from the streamlit), check the jupyter notebook 
 Link to the streamlit web app :
 https://ajinuhi-source-youtube-channel-analysis-main-main-py-9ptmq9.streamlit.app/
 
-Note: The CSV files were saved (general.csv and videos.csv) to build a PowerBI dashboard
+Note: The CSV files were saved (general.csv and videos.csv) to build a  dashboard
